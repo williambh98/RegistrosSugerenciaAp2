@@ -27,7 +27,7 @@
 
         <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/UI/Registros/Rusuario.aspx">Registros</a></li>
+                        <li><a runat="server" href="~/UI/Registros/RegistrosSugerencias.aspx">Registros</a></li>
                         <li><a runat="server" href="~/UI/Consultas/Cusuario.aspx">Consultas</a></li>                    
                     </ul>
                 </div>

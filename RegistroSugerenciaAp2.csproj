@@ -125,6 +125,7 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="UI\Consultas\ConsultasSugerencias.aspx" />
     <Content Include="UI\Registros\RegistrosSugerencias.aspx" />
     <Content Include="Web.config" />
     <Content Include="Scripts\umd\popper.min.js.map" />
@@ -156,6 +157,13 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
+    <Compile Include="UI\Consultas\ConsultasSugerencias.aspx.cs">
+      <DependentUpon>ConsultasSugerencias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\Consultas\ConsultasSugerencias.aspx.designer.cs">
+      <DependentUpon>ConsultasSugerencias.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UI\Registros\RegistrosSugerencias.aspx.cs">
       <DependentUpon>RegistrosSugerencias.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -180,13 +188,22 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="UI\Consultas\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="BLL\BLL.csproj">
+      <Project>{1848FD7D-18EB-406E-9EDC-A435F3501758}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="Entidades\Entidades.csproj">
+      <Project>{065D05D8-9453-4119-B22F-BC3736F29176}</Project>
+      <Name>Entidades</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
