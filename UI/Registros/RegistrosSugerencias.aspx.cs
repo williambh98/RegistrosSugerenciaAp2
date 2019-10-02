@@ -1,4 +1,5 @@
 ﻿using BLL;
+using DAL;
 using Entidades;
 using RegistroSugerenciaAp2.Utilitarios;
 using System;
@@ -25,12 +26,15 @@ namespace RegistroSugerenciaAp2.UI.Registros
                         Utils.ShowToastr(this, "Id no existe", "Error", "error");
                     else
                         LlenaCampo(user);
+                    repositorio.Dispose();
 
                 }
+
                 else
                 {
                     NuevoButton_Click(null, null);
                 }
+
             }
 
         }
@@ -58,50 +62,71 @@ namespace RegistroSugerenciaAp2.UI.Registros
             fechaTextBox.Text = sugerencia.Fecha.ToString();
             DescripcionTextBox.Text = sugerencia.Descripcion;
         }
-        private bool Validar()
+        private bool ExisteEnLaBaseDeDatos()
         {
-            bool paso = true;
-      
-            if (string.IsNullOrWhiteSpace(fechaTextBox.Text))
-                paso = false;
-            if (string.IsNullOrWhiteSpace(DescripcionTextBox.Text))
-                paso = false;
-            return paso;
+            RepositorioBase<Sugerencia> db = new RepositorioBase<Sugerencia>();
+            Sugerencia sugerencia = db.Buscar(Convert.ToInt32(IdTextBox.Text));
+            return (sugerencia != null);
+
         }
-      
         protected void GuardarButton_Click(object sender, EventArgs e)
         {
-            RepositorioBase<Sugerencia> repositorio = new RepositorioBase<Sugerencia>();
-            Sugerencia sugerecia = repositorio.Buscar(Utils.ToInt(IdTextBox.Text));
+            //RepositorioBase<Sugerencia> repositorio = new RepositorioBase<Sugerencia>();
+            //Sugerencia sugerecia = repositorio.Buscar(Utils.ToInt(IdTextBox.Text));
+            RepositorioBase<Sugerencia> db = new RepositorioBase<Sugerencia>();
+            Sugerencia sugerencia;
+            bool paso = false;
 
-            if (sugerecia == null)
+            sugerencia = LlenaClase();
+
+            if (IdTextBox.Text == Convert.ToString(0))
             {
-                if (repositorio.Guardar(LlenaClase()))
-                {
-
-                    Utils.ShowToastr(this, "Guardado", "Exito", "success");
-                    Limpiar();
-                }
-                else
-                {
-                    Utils.ShowToastr(this, "No existe", "Error", "error");
-                    Limpiar();
-                }
-
+                paso = db.Guardar(sugerencia);
             }
             else
             {
-                if (repositorio.Modificar(LlenaClase()))
+                if (!ExisteEnLaBaseDeDatos())
                 {
-                    Utils.ShowToastr(this.Page, "Modificado con exito!!", "Guardado", "success");
-                    Limpiar();
+                    Utils.ShowToastr(this.Page, "LLenar este campo", "Error", "error");
+                    return;
                 }
-                else
-                {
-                    Utils.ShowToastr(this.Page, "No se puede modificar", "Error", "error");
-                    Limpiar();
-                }
+                paso = db.Modificar(sugerencia);
             }
+
+            if (paso)
+                Utils.ShowToastr(this.Page, "Guardado ", "Exito", "success");
+            else
+                Utils.ShowToastr(this.Page, "Error No Guardado", "Error", "error");
+            Limpiar();
+
+            //if (sugerecia == null)
+            //{
+            //    if (repositorio.Guardar(LlenaClase()))
+            //    {
+
+            //        Utils.ShowToastr(this, "Guardado", "Exito", "success");
+            //        Limpiar();
+            //    }
+            //    else
+            //    {
+            //        Utils.ShowToastr(this, "No existe", "Error", "error");
+            //        Limpiar();
+            //    }
+
+            //}
+            //else
+            //{
+            //    if (repositorio.Modificar(LlenaClase()))
+            //    {
+            //        Utils.ShowToastr(this.Page, "Modificado con exito!!", "Guardado", "success");
+            //        Limpiar();
+            //    }
+            //    else
+            //    {
+            //        Utils.ShowToastr(this.Page, "No se puede modificar", "Error", "error");
+            //        Limpiar();
+            //    }
+            //}
         }
 
         protected void EliminarButton_Click(object sender, EventArgs e)
@@ -122,6 +147,7 @@ namespace RegistroSugerenciaAp2.UI.Registros
             }
             else
                 EliminarRequiredFieldValidator.IsValid = false;
+            repositorio.Dispose();
         }
 
         protected void BuscarButton_Click(object sender, EventArgs e)
@@ -135,6 +161,7 @@ namespace RegistroSugerenciaAp2.UI.Registros
                 Limpiar();
                 Utils.ShowToastr(this.Page, "Id no exite", "Error", "error");
             }
+            rep.Dispose();
         }
     }
 

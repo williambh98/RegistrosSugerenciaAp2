@@ -18,7 +18,7 @@
     <script src="/Scripts/bootstrap.min.js"></script>--%>
     <script src="/Scripts/bootstrap.bundle.min.js"></script>
     <script src="/Scripts/toastr.min.js"></script>
-    <title>Sugerencia.do</title>
+    <title>Sugerencias.do</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -28,7 +28,7 @@
         <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/UI/Registros/RegistrosSugerencias.aspx">Registros</a></li>
-                        <li><a runat="server" href="~/UI/Consultas/Cusuario.aspx">Consultas</a></li>                    
+                        <li><a runat="server" href="~/UI/Consultas/ConsultasSugerencias.aspx">Consultas</a></li>                    
                     </ul>
                 </div>
     </nav>
@@ -43,7 +43,7 @@
         </asp:ContentPlaceHolder>
         <hr />
         <footer>
-            <p>&copy; <%: DateTime.Now.Year %> - Registro Sugerencia</p>
+            <p>&copy; <%: DateTime.Now.Year %> - Registro Sugerencias</p>
         </footer>
     </div>
 </body>

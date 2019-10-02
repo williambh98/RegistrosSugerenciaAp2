@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="panel panel-primary">
-        <div class="panel-heading">Consulta de Sugerencia</div>
+        <div class="panel-heading">Consulta de Sugerencias</div>
         <div class="panel-body">
 
             <div >
@@ -21,7 +21,7 @@
                     <asp:TextBox ID="FiltroTextBox" runat="server" CssClass="form-control input-sm"></asp:TextBox>
                 </div>
                 <div class="col-md-4">
-                    <asp:Button ID="BuscarButton" runat="server" Class="btn btn-success input-sm" Text="Buscar" OnClick="BuscarButton_Click" />
+                    <asp:Button ID="BuscarButton" runat="server" CssClass="btn btn-success input-sm" Text="Buscar" OnClick="BuscarButton_Click" />
                 </div>
             </div>
                  <%--Selercionar solo por fecha--%>
@@ -35,11 +35,11 @@
             <div class="form-row justify-content-center">
                 <div class="form-group col-md-2">
                     <asp:Label Text="Desde" runat="server" />
-                    <asp:TextBox ID="DesdeTextBox" class="form-control input-group" TextMode="Date" runat="server" />
+                    <asp:TextBox ID="DesdeTextBox" CssClass="form-control input-group" TextMode="Date" runat="server" />
                 </div>
                 <div class="form-group col-md-2">
                     <asp:Label Text="Hasta" runat="server" />
-                    <asp:TextBox ID="HastaTextBox" class="form-control input-group" TextMode="Date" runat="server" />
+                    <asp:TextBox ID="HastaTextBox" CssClass="form-control input-group" TextMode="Date" runat="server" />
                 </div>
             </div>
          
@@ -47,7 +47,7 @@
             <div class="col-md-12">
                 <asp:GridView ID="DatosGridView"
                     runat="server"
-                    class="table table-condensed table-bordered table-responsive"
+                    CssClass="table table-condensed table-bordered table-responsive"
                     CellPadding="4" ForeColor="#333333" GridLines="None">
 
                     <AlternatingRowStyle BackColor="White" />

@@ -110,6 +110,8 @@
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
+    <None Include="Properties\PublishProfiles\RegistrosSugerenciasAp2 - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\RegistrosSugerenciasAp2 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -199,6 +201,10 @@
     <ProjectReference Include="BLL\BLL.csproj">
       <Project>{1848FD7D-18EB-406E-9EDC-A435F3501758}</Project>
       <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="DAL\DAL.csproj">
+      <Project>{4C02895F-94D6-4A6C-8148-FFA22FC15394}</Project>
+      <Name>DAL</Name>
     </ProjectReference>
     <ProjectReference Include="Entidades\Entidades.csproj">
       <Project>{065D05D8-9453-4119-B22F-BC3736F29176}</Project>

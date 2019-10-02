@@ -1,6 +1,7 @@
 ﻿using DAL;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -16,12 +17,13 @@ namespace BLL
         {
             _contexto = new Contexto();
         }
-        ~RepositorioBase()
-        {
 
-        }
-
-        public virtual bool Guardar(T entity)
+        /// <summary>
+        /// Permite guardar una entidad en la base de datos
+        /// </summary>
+        /// <param name="entity">Una instancia de la entidad a guardar</param>
+        /// <returns>Retorna True si guardo o Falso si falló </returns>
+        public bool Guardar(T entity)
         {
             bool paso = false;
 
@@ -29,7 +31,7 @@ namespace BLL
             {
                 if (_contexto.Set<T>().Add(entity) != null)
                 {
-                    _contexto.SaveChanges();
+                    _contexto.SaveChanges(); //Guardar los cambios
                     paso = true;
                 }
             }
@@ -40,17 +42,21 @@ namespace BLL
             return paso;
         }
 
+        /// <summary>
+        /// Permite Modificar una entidad en la base de datos 
+        /// </summary>
+        /// <param name="entity">Una instancia de la entidad a guardar</param>
+        /// <returns>Retorna True si Modifico o Falso si falló </returns>
         public virtual bool Modificar(T entity)
         {
             bool paso = false;
             try
             {
-                _contexto.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+                _contexto.Entry(entity).State = EntityState.Modified;
                 if (_contexto.SaveChanges() > 0)
-                    if (_contexto.SaveChanges() > 0)
-                    {
-                        paso = true;
-                    }
+                {
+                    paso = true;
+                }
             }
             catch (Exception)
             {
@@ -59,23 +65,33 @@ namespace BLL
             return paso;
         }
 
-        public virtual bool Eliminar(int id)
+        /// <summary>
+        /// Permite Eliminar una entidad en la base de datos
+        /// </summary>
+        ///<param name="id">El Id de la entidad que se desea eliminar </param>
+        /// <returns>Retorna True si Eliminó o Falso si falló </returns>
+        public bool Eliminar(int id)
         {
             bool paso = false;
             try
             {
                 T entity = _contexto.Set<T>().Find(id);
                 _contexto.Set<T>().Remove(entity);
+
                 if (_contexto.SaveChanges() > 0)
                     paso = true;
-                _contexto.Dispose();
+
             }
             catch (Exception)
             { throw; }
             return paso;
-
         }
 
+        /// <summary>
+        /// Permite Buscar una entidad en la base de datos
+        /// </summary>
+        ///<param name="id">El Id de la entidad que se desea encontrar </param>
+        /// <returns>Retorna la persona encontrada </returns>
         public virtual T Buscar(int id)
         {
             T entity;
@@ -84,9 +100,17 @@ namespace BLL
                 entity = _contexto.Set<T>().Find(id);
             }
             catch (Exception)
-            { throw; }
+            {
+                throw;
+            }
             return entity;
         }
+
+        /// <summary>
+        /// Permite extraer una lista de Personas de la base de datos
+        /// </summary> 
+        ///<param name="expression">Expression Lambda conteniendo los filtros de busqueda </param>
+        ///// <returns>Retorna una lista de entidades</returns>
         public List<T> GetList(Expression<Func<T, bool>> expression)
         {
             List<T> Lista = new List<T>();
@@ -100,11 +124,11 @@ namespace BLL
             }
             return Lista;
         }
-
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _contexto.Dispose();
         }
+
 
     }
 }

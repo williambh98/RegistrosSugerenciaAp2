@@ -12,21 +12,20 @@ namespace Entidades
     {
         [Key]
         public int SugerenciaId { get; set; }
-        public DateTime Fecha { get; set; }
         public string Descripcion { get; set; }
-
+        public DateTime Fecha { get; set; }
         public Sugerencia()
         {
             this.SugerenciaId = 0;
-            this.Fecha = DateTime.Now;
             this.Descripcion = string.Empty;
+            this.Fecha = DateTime.Now;
         }
 
-        public Sugerencia(int sugerenciaId, DateTime fecha, string descripcion)
+        public Sugerencia(int sugerenciaId, string descripcion, DateTime fecha)
         {
             SugerenciaId = sugerenciaId;
-            Fecha = fecha;
             Descripcion = descripcion;
+            Fecha = fecha;
         }
     }
 }
