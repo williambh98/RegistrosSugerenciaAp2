@@ -71,8 +71,6 @@ namespace RegistroSugerenciaAp2.UI.Registros
         }
         protected void GuardarButton_Click(object sender, EventArgs e)
         {
-            //RepositorioBase<Sugerencia> repositorio = new RepositorioBase<Sugerencia>();
-            //Sugerencia sugerecia = repositorio.Buscar(Utils.ToInt(IdTextBox.Text));
             RepositorioBase<Sugerencia> db = new RepositorioBase<Sugerencia>();
             Sugerencia sugerencia;
             bool paso = false;
@@ -91,6 +89,8 @@ namespace RegistroSugerenciaAp2.UI.Registros
                     return;
                 }
                 paso = db.Modificar(sugerencia);
+                Utils.ShowToastr(this.Page, "Modificado ", "Exito", "success");
+                return;
             }
 
             if (paso)
@@ -99,34 +99,6 @@ namespace RegistroSugerenciaAp2.UI.Registros
                 Utils.ShowToastr(this.Page, "Error No Guardado", "Error", "error");
             Limpiar();
 
-            //if (sugerecia == null)
-            //{
-            //    if (repositorio.Guardar(LlenaClase()))
-            //    {
-
-            //        Utils.ShowToastr(this, "Guardado", "Exito", "success");
-            //        Limpiar();
-            //    }
-            //    else
-            //    {
-            //        Utils.ShowToastr(this, "No existe", "Error", "error");
-            //        Limpiar();
-            //    }
-
-            //}
-            //else
-            //{
-            //    if (repositorio.Modificar(LlenaClase()))
-            //    {
-            //        Utils.ShowToastr(this.Page, "Modificado con exito!!", "Guardado", "success");
-            //        Limpiar();
-            //    }
-            //    else
-            //    {
-            //        Utils.ShowToastr(this.Page, "No se puede modificar", "Error", "error");
-            //        Limpiar();
-            //    }
-            //}
         }
 
         protected void EliminarButton_Click(object sender, EventArgs e)
