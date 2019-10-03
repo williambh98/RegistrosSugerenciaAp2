@@ -23,7 +23,7 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <%--Menu Principal--%>
+    <%--Menu Sugerencias--%>
     <div class="container-">
         <nav class="navbar navbar-inverse">
 
