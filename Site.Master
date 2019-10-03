@@ -23,15 +23,41 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <nav class="navbar navbar-inverse">
+    <%--Menu Principal--%>
+    <div class="container-">
+        <nav class="navbar navbar-inverse">
 
-        <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/UI/Registros/RegistrosSugerencias.aspx">Registros</a></li>
-                        <li><a runat="server" href="~/UI/Consultas/ConsultasSugerencias.aspx">Consultas</a></li>                    
-                    </ul>
-                </div>
-    </nav>
+            <div class="navbar-header">
+
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                  <%--  <li><a href="#" style="font-family: Arial; font-size: 16px">Inicio</a></li>--%>
+                    <li class="dropdown">
+
+                        <a class="dropdown-toggle" data-toggle="dropdown" style="font-family: Arial; font-size: 16px">Registros<span class="caret"></span></a>
+                        <ul class="dropdown-menu" style="font-family: Arial; font-size: 16px">
+                            <li><a href="/UI/Registros/RegistrosSugerencias.aspx">Sugerencias</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" style="font-family: Arial; font-size: 16px">Consultas<span class="caret"></span></a>
+                        <ul class="dropdown-menu" style="font-family: Arial; font-size: 16px">
+                            <li><a href="/UI/Consultas/ConsultasSugerencias.aspx">Sugerencias</a></li>
+                        </ul>
+                    </li>
+                    <%--<li><a href="#" style="font-family: Arial; font-size: 16px">Ayuda</a></li>--%>
+                </ul>
+
+            </div>
+            <div class="clearfix visible-lg-block"></div>
+        </nav>
+    </div>
     <form id="form1" runat="server">
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
